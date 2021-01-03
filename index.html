@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priorisierungshelfer</title>
+    <link rel="stylesheet" href="libs/bootstrap.min.css">
+    <style>
+        .result {
+            text-decoration-line: underline;
+            text-decoration-style: double;
+            font-size: 12pt; 
+            font-weight: bold;
+            color: red;
+        }
+
+        .caption {
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prioritätsschätzung</h1>
+
+        <h2>Zieltreue</h2>
+        <table class="table table-sm">
+            <thead>
+            <tr><th>&nbsp;</th><th class="caption">Ziel</th><th>Punkte</th></tr>
+            </thead>
+            <tbody data-bind="foreach: ziele">
+                <tr>
+                    <td><input type="checkbox" data-bind="checked:istAusgewaehlt"></td>
+                    <td data-bind="text: name"></td>
+                <td><span data-bind="text: punkte"></span> Punkt(e)</td>
+                </tr>
+            </tbody>
+        </table>
+        = <span class="result" data-bind="text: ZieltreueGesamt"></span>
+
+        <br/><br/>
+        <h2>Ersparnis</h2>
+        <table class="table table-sm">
+            <tr>
+                <th class="caption">Werte im Durchschnitt für eine Nutzung<th>
+            </tr>
+            <tr>
+                <td class="caption">Anzahl gesparte Minuten ca.</td>
+                <td><input data-bind="value: spart.Minuten.Anzahl" type="number" /></td>
+            </tr>
+            <tr>
+                <td class="caption">Anzahl gesparte EURO ca.</td>
+                <td><input data-bind="value: spart.Euro.Anzahl" type="number" /></td>
+            </tr>
+        </table>
+        = <span class="result" data-bind="text: ErsparnisGesamt"></span>
+        <br/><br/>
+        <h2>Skalierung</h2>
+
+        <table class="table table-sm">
+        <tr>
+            <td class="caption">Vorraussichtliche Nutzungen pro Jahr ca. (für einen Mitarbeiter)</td><td><input data-bind="value: Skalierung.NutzungenProJahr" type="number" /></td>
+        </tr>
+        <tr>
+            <td class="caption">Anzahl der Mitarbeiter, die diesen Bedarf haben</td><td><input data-bind="value: Skalierung.AnzahlMitarbeiter" type="number" /></td>
+        </tr>  
+        </table>
+        = <span class="result" data-bind="text: SkalierungGesamt"></span>
+        <br/><br/>
+        <hr>
+        Gesamtpunktzahl: <span class="result" style="font-size: 14pt;" data-bind="text: PunkteGesamt"></span>
+        <br/>
+        <script src="libs/knockout-latest.js"></script>
+        <script src="js/main.js"></script>
+    </div>
+</body>
+</html>
